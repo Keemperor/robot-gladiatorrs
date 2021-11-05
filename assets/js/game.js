@@ -19,9 +19,9 @@ var enemyHealth = 50;
 var enemyAttack = 12;
 
 // create function (function declaration in this case)
-function fight() {
+/*function fight() {
   window.alert("Welcome to Robot Gladiators!")
-};
+};*/
 
 // fight ();
 var fight = function(pickedEnemyName) {
@@ -31,7 +31,6 @@ var fight = function(pickedEnemyName) {
         var promptFight = window.prompt ("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 
     console.log (promptFight);
-
 
     // if player chooses to skip the nstop the loop
     if (promptFight === 'skip' || promptFight === "SKIP") {
@@ -91,7 +90,23 @@ else {
 
 // execute function
 for(var i = 0; i < enemyNames.length; i++) {
-    var pickedEnemyName = enemyNames[i];
-    enemyHealth = 50;
-    fight(pickedEnemyName);
+    if (playerHealth > 0) {
+        // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
+        window.alert("Welcome to Robot Gladiators! Round " + (i +1));
+
+        var pickedEnemyName = enemyNames[i];
+
+        enemyHealth = 50;
+
+        //debugger;
+
+        fight(pickedEnemyName); 
+        
+        
+}
+
+else {
+    window.alert("You have lost your robot in battle! Game Over !");
+}
+
    }
