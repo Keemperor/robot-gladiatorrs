@@ -113,9 +113,9 @@ for(var i = 0; i < enemyNames.length; i++) {
 
         //debugger;
 
-        fight(pickedEnemyName);    
+        fight(pickedEnemyName);   
         
-        if (playerHealth > 0 && i < enemyNames.length - 1 ) {
+         if (playerHealth > 0 && i < enemyNames.length - 1 ) {
 
             // ask if the player wants to use the store
             var storeConfirm = window.confirm("the fight is over, visit the store before the next round?");
@@ -187,7 +187,7 @@ var shop = function () {
           case "upgrade":
             if (playerMoney >= 7) {
             window.alert("Upgrading player's attack by 6 for 7 dollars.");
-        
+
             // increase attack and decrease money
             playerAttack = playerAttack + 6;
             playerMoney = playerMoney - 7;
@@ -203,17 +203,17 @@ var shop = function () {
           case "LEAVE":
           case "leave":
             window.alert("Leaving the store.");
-        
+
             // do nothing, so function will end
             break;
-            
+
           default:
             window.alert("You did not pick a valid option. Try again.");
-        
+
             // call shop() again to force player to pick a valid option
             shop();
             break;
-        
+
     }
 };
 
