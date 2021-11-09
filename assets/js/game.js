@@ -42,17 +42,26 @@ var fight = function(pickedEnemyName) {
             window.alert(playerName + " has decided to skip this fight. Goodbye!");
     
             // substract money from playerMoney for skiping.
-            playerMoney = playerMoney - 10;
+            playerMoney = Math.max(0, playerMoney - 10);
             console.log ("playerMoney", playerMoney);
             break;
         }
     }
+
+    var randomNumber = function(){
+        var value = Math.floor(Math.random() * (3)) + 10;
+
+        return value;
+    };
+
     // if the player chooses to fight, then fight
     if (promptFight === "fight" || promptFight === "FIGHT") {
 
-//Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
+// generate random damage value based on player's attack power
+    var damage = randomNumber(playerAttack - 3, playerAttack);
 
-    enemyHealth = enemyHealth - playerAttack;
+//Subtract the value of `playerAttack` from the value of `enemyHealth` and use that result to update the value in the `enemyHealth` variable
+    enemyHealth = Math.max(0, enemyHealth - damage);
 
 // Log a resulting message to the console so we know that it worked.
     console.log(playerName + " attacked " + pickedEnemyName + ". " + pickedEnemyName + " now has " + enemyHealth + " health remaining."); 
@@ -69,8 +78,10 @@ var fight = function(pickedEnemyName) {
     window.alert(pickedEnemyName + " still has " + enemyHealth + " health left.");
 }
   
+    var damage = randomNumber(playerAttack - 3, playerAttack);
+
 // Subtract the value of `enemyAttack` from the value of `playerHealth` and use that result to update the value in the `playerHealth` variable.
-    playerHealth = playerHealth - enemyAttack;
+    playerHealth = Math.max(0, playerHealth - damage);
 
 // Log a resulting message to the console so we know that it worked.
      console.log(pickedEnemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
@@ -109,7 +120,14 @@ for(var i = 0; i < enemyNames.length; i++) {
 
         var pickedEnemyName = enemyNames[i];
 
-        enemyHealth = 50;
+        // function to generate random numeric values
+        var randomNumber = function() {
+            var value = Math.floor(Math.random() * (21)) + 40;
+
+            return value
+        };
+
+        enemyHealth = randomNumber(40, 60);
 
         //debugger;
 
