@@ -78,26 +78,31 @@ var enemyInfo = [
 
 ];
 
-console.log(enemyInfo);
+/*console.log(enemyInfo);
 console.log(enemyInfo[0]);
 console.log(enemyInfo[0].name);
-console.log(enemyInfo[0]['attack']);
+console.log(enemyInfo[0]['attack']);*/
 // create function (function declaration in this case)
 /*function fight() {
   window.alert("Welcome to Robot Gladiators!")
 };*/
 
-// fight ();
-var fight = function(enemyInfo) {
-    //repeat and execute as long as the enemy-robot is still alive
-    while(playerInfo.health > 0 && enemyInfo.health > 0) {
+//fight ();
 
-        var promptFight = window.prompt ("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+var fightOrSkip = function () { 
+    var promptFight = window.prompt ("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 
-    console.log (promptFight);
+   // console.log (promptFight);
+
+   if (promptFight === "" || promptFight === null) {
+        window.alert("You need to provide a valid answer! Please try again.");
+        return fightOrSkip();
+    }
+
+    promptFight = promptFight.toLowerCase ();
 
     // if player chooses to skip the nstop the loop
-    if (promptFight === 'skip' || promptFight === "SKIP") {
+    if (promptFight === 'skip') {
         // confirm player wants to skip
         var confirmSkip = window.confirm("Are you sure you'd like to quit?");
     
@@ -108,10 +113,22 @@ var fight = function(enemyInfo) {
             // substract money from playerInfo.money for skiping.
             playerInfo.money = Math.max(0, playerInfo.money - 10);
             console.log ("playerInfo.money", playerInfo.money);
-            break;
+           return true;
         }
     }
+    return false;
+};
 
+
+var fight = function(enemyInfo) {
+    //repeat and execute as long as the enemy-robot is still alive
+    //debugger;
+    
+    while(playerInfo.health > 0 && enemyInfo.health > 0) {
+
+   if (fightOrSkip()) {
+       break;
+   };
    /* var randomNumber = function(){
         var value = Math.floor(Math.random() * (3)) + 12;
 
@@ -119,7 +136,7 @@ var fight = function(enemyInfo) {
     };*/
 
     // if the player chooses to fight, then fight
-    if (promptFight === "fight" || promptFight === "FIGHT") {
+   // if (promptFight === "fight" || promptFight === "FIGHT") {
 
 // generate random damage value based on player's attack power
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
@@ -160,14 +177,17 @@ else {
     window.alert("Your robot " + playerInfo.name + " has " + playerInfo.health + " health left, he is still alive!");
 }
 
+
 }
-    }
+   // }
+ // }
 };
 // create function (function expression in this case)
 //fight ();
 
 // execute function
 // function to start the game 
+
 
 var startGame = function () {
     // reset plyer stats
