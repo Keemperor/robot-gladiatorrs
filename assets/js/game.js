@@ -123,12 +123,22 @@ var fightOrSkip = function () {
 var fight = function(enemyInfo) {
     //repeat and execute as long as the enemy-robot is still alive
     //debugger;
+
+    var isPlayerTurn = true;
+
+    if (Math.random() > 0.5) {
+        isPlayerTurn = false
+    }
     
     while(playerInfo.health > 0 && enemyInfo.health > 0) {
 
+    if (isPlayerTurn) {
+
    if (fightOrSkip()) {
+
        break;
-   };
+   }
+
    /* var randomNumber = function(){
         var value = Math.floor(Math.random() * (3)) + 12;
 
@@ -146,7 +156,8 @@ var fight = function(enemyInfo) {
 
 // Log a resulting message to the console so we know that it worked.
     console.log(playerInfo.name + " attacked " + enemyInfo.name + ". " + enemyInfo.name + " now has " + enemyInfo.health + " health remaining."); 
-
+    
+    
 // check enemy's health
     if (enemyInfo.health <= 0) {
     window.alert(enemyInfo.name + " has died!");
@@ -154,33 +165,31 @@ var fight = function(enemyInfo) {
     playerInfo.money = playerInfo.money + 20;
 
     break;
-}
-    else {
+} else {
     window.alert(enemyInfo.name + " still has " + enemyInfo.health + " health left.");
-}
-  
-    var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
-
+}  
+} else {
+    var damage = randomNumber(enemyInfo.attack - 3, enemyInfo.attack);
+    
 // Subtract the value of `enemyAttack` from the value of `playerInfo.health` and use that result to update the value in the `playerInfo.health` variable.
     playerInfo.health = Math.max(0, playerInfo.health - damage);
 
 // Log a resulting message to the console so we know that it worked.
      console.log(enemyInfo.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining.");
-
+    
 // check to see if the value of the playerInfo.health variable is greater than 0
 if (playerInfo.health <= 0) {
     window.alert(playerInfo.name + "has died!");
     break;
-}
 
-else {
+} else {
     window.alert("Your robot " + playerInfo.name + " has " + playerInfo.health + " health left, he is still alive!");
 }
+       
+}    
+isPlayerTurn = !isPlayerTurn;
 
-
-}
-   // }
- // }
+    }
 };
 // create function (function expression in this case)
 //fight ();
